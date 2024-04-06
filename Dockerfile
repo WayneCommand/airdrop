@@ -19,7 +19,7 @@ RUN npm i
 
 WORKDIR "/app/airdrop/docker"
 # config web server
-COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 
 ENV PUID=0 PGID=0 UMASK=022
