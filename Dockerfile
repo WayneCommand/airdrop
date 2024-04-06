@@ -11,16 +11,11 @@ RUN apk update && \
 # init snapdrop project
 RUN git clone https://github.com/RobinLinus/snapdrop.git
 COPY ./snapdrop /app/airdrop
-
+COPY ./config/default.conf /etc/nginx/conf.d/default.conf
 
 # setting server
 WORKDIR "/app/airdrop/server"
 RUN npm i
-
-WORKDIR "/app/airdrop/docker"
-# config web server
-COPY /app/airdrop/docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-
 
 ENV PUID=0 PGID=0 UMASK=022
 EXPOSE 10000
