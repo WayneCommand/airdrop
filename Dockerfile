@@ -11,7 +11,7 @@ RUN apk update && \
 WORKDIR "/app"
 # init snapdrop project
 RUN git clone https://github.com/RobinLinus/snapdrop.git
-ADD config/default.conf /etc/nginx/conf.d/default.conf
+ADD config/default.conf /etc/nginx/nginx.conf
 ADD entrypoint.sh /app/snapdrop
 
 RUN chmod +x /app/snapdrop/entrypoint.sh
