@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start server 10000
-service nginx restart
+nginx
 echo 'web server started!'
 
 if [ "$1" = "version" ]; then
