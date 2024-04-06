@@ -3,19 +3,20 @@ LABEL MAINTAINER="waynecommand"
 
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache bash nodejs-current nginx git; \
-    chmod +x /entrypoint.sh && \
+    apk add --no-cache bash nodejs-current npm nginx git; \
     rm -rf /var/cache/apk/*
 
+# RUN chmod +x entrypoint.sh
 
 # init snapdrop project
 RUN git clone https://github.com/RobinLinus/snapdrop.git
-COPY ./snapdrop /app/airdrop
-COPY ./config/default.conf /etc/nginx/conf.d/default.conf
+RUN mkdir -p /app/snapdrop; mv ./snapdrop /app/
+
+ADD config/default.conf /etc/nginx/conf.d/default.conf
 
 # setting server
-WORKDIR "/app/airdrop/server"
-RUN npm i
+WORKDIR "/app/snapdrop/server"
+RUN cd /app/snapdrop/server; npm i
 
 ENV PUID=0 PGID=0 UMASK=022
 EXPOSE 10000
